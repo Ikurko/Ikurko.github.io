@@ -5,38 +5,106 @@
 <title>IKURKO комикс</title>
 <link rel="stylesheet" href="styles.css" />
 </head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    font-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+    background-color: #323639;
+  }
+  /* Заголовок */
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  /* Обертка изображения */
+  .slider {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Картинка */
+  #slideImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid #ccc;
+  }
+
+  /* Кнопки навигации */
+  .buttons {
+    margin-top: 10px;
+  }
+
+  button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
 <body>
-<header>
-  <h1>ОМЕЛА</h1>
-   <style>
-        /* Стиль для контейнера, чтобы разместить изображение по центру */
-        body {
-            display: flex;
-            justify-content: center; /* горизонтальное центрирование */
-            align-items: center;    /* вертикальное центрирование */
-            height: 100vh;          /* высота вьюпорта */
-            margin: 0;
-            background-color: #323639; /* цвет фона (опционально) */
-        }
 
-        /* Стиль для изображения */
-        img {
-            max-width: 100%;   /* чтобы не превышать размеры контейнера */
-            height: auto;      /* сохранить пропорции */
-        }
-    </style>
-  <body>
-    <img src="images/example.jpg" alt="страница комикса" />
+<h1>Омела</h1>
+
+<div class="slider">
+  <!-- Здесь ваши картинки, замените пути при необходимости -->
+  <img id="slideImage" src="images/image1.jpg" alt="Омела" />
+</div>
+
+<div class="buttons">
+  <button id="firstBtn">В начало</button>
+  <button id="prevBtn">Предыдущая</button>
+  <button id="nextBtn">Следующая</button>
+  <button id="lastBtn">В конец</button>
+</div>
+
+<script>
+  // Массив картинок
+  const images = [
+    'images/image1.jpg',
+    'images/image2.jpg',
+    'images/image3.jpg',
+    'images/image4.jpg'
+  ];
+
+  let currentIndex = 0;
+  const slideImage = document.getElementById('slideImage');
+
+  // Обработчики кнопок
+document.getElementById('firstBtn').addEventListener('click', () => {
+    currentIndex = 0;
+    updateImage();
+});
+
+document.getElementById('lastBtn').addEventListener('click', () => {
+    currentIndex = images.length - 1;
+    updateImage();
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateImage();
+    }
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentIndex < images.length - 1) {
+        currentIndex++;
+        updateImage();
+    }
+});
+
+// Обновление картинки
+function updateImage() {
+    slideImage.src = images[currentIndex];
+}
+</script>
+
 </body>
-
-  
-  <nav>
-    <a href="page1.html">начало</a>
-    <a href="page2.html">пред</a>
-    <a href="page3.html">след</a>
-    <a href="page4.html">конец</a>
-  
-  </nav>
 </header>
 
 <main>
